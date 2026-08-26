@@ -1,38 +1,38 @@
-import { prisma } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 
-export default async function ServicesPage() {
-  const services = await prisma.service.findMany({
-    include: {
-      seller: true
-    }
-  });
-
+export default function ServicesPage() {
   return (
     <main className="container">
-      <h1>All Services</h1>
+      <h1>Services</h1>
 
       <p className="muted">
-        Browse all marketplace services.
+        Browse available MockMarket services.
       </p>
 
       <div className="grid">
-        {services.map((service) => (
-          <div className="card" key={service.id}>
-            <p className="muted">
-              {service.category}
-            </p>
+        <div className="card">
+          <p className="muted">Marketing</p>
 
-            <h2>{service.title}</h2>
+          <h2>Telegram Channel Promotion</h2>
 
-            <p>{service.description}</p>
+          <p>
+            Professional Telegram promotion service.
+          </p>
 
-            <strong>${service.price}</strong>
+          <div className="price">$25</div>
+        </div>
 
-            <p>
-              Seller: {service.seller.name}
-            </p>
-          </div>
-        ))}
+        <div className="card">
+          <p className="muted">Social Media</p>
+
+          <h2>Social Media Marketing</h2>
+
+          <p>
+            Social media marketing service.
+          </p>
+
+          <div className="price">$30</div>
+        </div>
       </div>
     </main>
   );
